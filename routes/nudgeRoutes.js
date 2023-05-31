@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const authMiddleware = require('../middlewares/authMiddleware.js')
 const Nudge = require('../models/nudgeModel.js')
+const cloudinaryConfig = require('../config/cloudinaryConfig.js');
 
 
 
@@ -63,14 +64,30 @@ router.put('/:id',authMiddleware,async(req,res)=>{
 
 })
 
+
+
 // delete a nudge 
 
 router.delete('/:id',authMiddleware,async(req,res)=>{
 
 
     try {
+        const {id} = req.params
+        const nudge = await Nudge.findOne({_id:id})
+        if(!nudge){
+            return res.status(400).json({message:"No such nudge exists",success:false})
+        }
+
+        const url = nudge.coverImage
+
+        const getPublicId = (imageUrl) => imageUrl.split("/").pop().split(".")[0];
+
+
+        // first delete the image related to that event
+        await cloudinaryConfig.uploader.destroy(`deepthought-events/nudge/`+getPublicId(url))
+
         await Nudge.findByIdAndDelete(req.params.id)
-        res.status(200).json({message:"Nudge Deleted Successfully",success:false})
+        res.status(200).json({message:"Nudge Deleted Successfully",success:true})
         
     } catch (error) {
         res.status(500).json({message:error.message,success:false})

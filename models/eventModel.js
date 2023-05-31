@@ -25,7 +25,22 @@ const eventSchema = new mongoose.Schema({
         type:String,
     },
     scheduled:{
-        type:[]
+       type:[
+        {
+            on :{
+                type:Date,
+                required:true
+            },
+            from :{
+                type:Date,
+                required:true
+            },
+            to :{
+                type:Date,
+                required:true
+            }
+        }
+       ]
     },
   
   
@@ -43,6 +58,7 @@ const eventSchema = new mongoose.Schema({
     },
     attendees:{
         type:[],
+        ref:'user',
         required:true
     },
     imageUrl:{

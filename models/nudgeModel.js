@@ -29,6 +29,14 @@ const nudgeSchema = new mongoose.Schema({
         type:Date,
         required:true
     },
+    scheduledFrom:{
+        type:Date,
+        required:true
+    },
+    scheduledTo:{
+        type:Date,
+        required:true
+    },
     coverImage:{
         type:String,
         required:true

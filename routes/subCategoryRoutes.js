@@ -15,7 +15,6 @@ router.post('/',authMiddleware,async(req,res)=>{
         }
         
         const parent = await EventType.findOne({_id:parentCategory})
-        console.log(parent)
         if(!parent){
 
             return res.status(404).json({message:"no such parent category exists",success:false})

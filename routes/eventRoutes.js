@@ -18,6 +18,10 @@ router.get('/',async(req,res)=>{
         if(req.query.id){
             try {
                 const event = await Event.findOne({_id:req.query.id})
+                .populate("moderator")
+                .populate("category")
+                .populate("subcategory")
+                .populate("attendees")
 
             return res.status(200).json({data:event,success:true})
         } catch (error) {
@@ -26,6 +30,19 @@ router.get('/',async(req,res)=>{
         }
 
 
+        if(req.query.type && !req.query.limit && !req.query.page){
+            try {
+                const events = await Event.find({}).sort('-createdAt')
+                .populate("moderator")
+                .populate("category")
+                .populate("subcategory")
+                .populate("attendees")
+
+                return res.status(200).json({data:events,success:true})
+            } catch (error) {
+               return res.status(500).json({message:error.messsage,success:false})
+            }
+        }
        
      
         // when limit is passed in the query string but not the type
@@ -40,6 +57,10 @@ router.get('/',async(req,res)=>{
 
            
             events = await Event.find({})
+            .populate("moderator")
+            .populate("category")
+            .populate("subcategory")
+            .populate("attendees")
             .skip(skip)
             .limit(limit)
 
@@ -49,6 +70,10 @@ router.get('/',async(req,res)=>{
 
             if(req.query.type==='latest'){
                 events = await Event.find({})
+                .populate("moderator")
+                .populate("category")
+                .populate("subcategory")
+                .populate("attendees")
                 .skip(skip)
                 .limit(limit)
                 .sort('-createdAt')
@@ -65,8 +90,11 @@ router.get('/',async(req,res)=>{
            }
         }
        
-        const events = await Event.find({}).sort('-createdAt')
+        const events = await Event.find({})
         .populate("moderator")
+        .populate("category")
+        .populate("subcategory")
+        .populate("attendees")
         res.status(200).json({data:events,success:true})
     } catch (error) {
         res.status(500).json({message:error.message,success:false})
@@ -104,8 +132,8 @@ router.post('/',authMiddleware,async(req,res)=>{
             return res.status(400).json({message:'inconsistent category & subcategory hierarchy',success:false})
         }
         // if all goes well, create the event
-       await Event.create(req.body);
-        res.status(200).json({message:'Event created Successfully', success:true})
+       const event = await Event.create(req.body);
+        res.status(200).json({data:event._id,message:'Event created Successfully', success:true})
     } catch (error) {
         res.status(500).json({message:error.message, success:false})
         
