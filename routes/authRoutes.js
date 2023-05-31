@@ -13,6 +13,11 @@ const authMiddleware = require('../middlewares/authMiddleware.js')
 router.post('/register',async(req,res)=>{
     try {
      // check if user already exists
+     const users = await User.find({})
+
+     if(users.length > 0){
+        return res.status(400).json({message:"Cannot create user",success:false})
+     }
 
      const userExists = await User.findOne({email:req.body.email});
 

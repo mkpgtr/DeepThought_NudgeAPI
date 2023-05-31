@@ -61,6 +61,24 @@ paths:
           description: ''
           headers: {}
       deprecated: false
+    put:
+      tags:
+      - EventType
+      summary: Update EventType
+      operationId: UpdateEventType
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
   /events:
     get:
       tags:
@@ -68,33 +86,31 @@ paths:
       summary: Get All Events
       operationId: GetAllEvents
       parameters: 
+     
       - name: type
         in: query
         description: ''
         required: false
-        style: form
-        explode: true
+        style: simple
         schema:
           type: string
           example: latest
-      - name: page
-        in: query
-        description: ''
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: number
-          example: 1
       - name: limit
         in: query
         description: ''
         required: false
-        style: form
-        explode: true
+        style: simple
         schema:
           type: number
-          example: 2
+          example: 3
+      - name: page
+        in: query
+        description: ''
+        required: false
+        style: simple
+        schema:
+          type: number
+          example: 1
       responses:
         '200':
           description: ''
@@ -159,57 +175,26 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /events/:
+  /events/{id}:
     get:
       tags:
       - Events
       summary: Get Event By Id
       operationId: GetEventById
       parameters:
-
       - name: id
         in: query
         description: ''
-        required: false
-        style: form
-        explode: true
+        required: true
+        style: simple
         schema:
           type: string
           example: 6475f10af7bb88bff135459d
-      - name: type
-        in: query
-        description: ''
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: latest
-      - name: limit
-        in: query
-        description: ''
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: number
-          example: 2
-      - name: page
-        in: query
-        description: ''
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: number
-          example: 2
-      
       responses:
         '200':
           description: ''
           headers: {}
       deprecated: false
-  /events/{id}:
     put:
       tags:
       - Events
@@ -343,8 +328,8 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /:
-    get:
+  /user:
+    post:
       tags:
       - User
       summary: Create User
@@ -362,6 +347,61 @@ paths:
       summary: Get All Users
       operationId: GetAllUsers
       parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/{id}:
+    put:
+      tags:
+      - User
+      summary: Update User
+      operationId: UpdateUser
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - User
+      summary: Delete User
+      operationId: DeleteUser
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+      - User
+      summary: Get User by Id
+      operationId: GetUserbyId
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
       responses:
         '200':
           description: ''
@@ -492,12 +532,18 @@ paths:
                   eventId: 6475a65cd5f41fe42bcf9a30
                   title: Let's make some hot coffee
                   icon: fa fa-solid-coffee
+                  scheduledOn:
+                  - timings: 12:00
+                    date: 12-12-2023
                   invitationLine: Come join this amazing session on coffee-making and learn to make some great tasting coffee with exotic coffee seeds
             example:
               eventCategoryId: 64758e2d7541a58bf5604c4a
               eventId: 6475a65cd5f41fe42bcf9a30
               title: Let's make some hot coffee
               icon: fa fa-solid-coffee
+              scheduledOn:
+              - timings: 12:00
+                date: 12-12-2023
               invitationLine: Come join this amazing session on coffee-making and learn to make some great tasting coffee with exotic coffee seeds
         required: true
       responses:
@@ -591,6 +637,37 @@ paths:
           description: ''
           headers: {}
       deprecated: false
+  /nudge/upload-image:
+    post:
+      tags:
+      - Nudge
+      summary: Upload Nudge Cover Image
+      operationId: UploadNudgeCoverImage
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /nudge/image/{id}/upload-image:
+    put:
+      tags:
+      - Nudge
+      summary: Update Uploaded Nudge Image Cover
+      operationId: UpdateUploadedNudgeImageCover
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
   /auth/register:
     post:
       tags:
@@ -608,11 +685,11 @@ paths:
               - example:
                   name: Super User
                   email: superuser123@gmail.com
-                  password: supergreatsecret123
+                  password: wrongpassword
             example:
               name: Super User
               email: superuser123@gmail.com
-              password: supergreatsecret123
+              password: wrongpassword
         required: true
       responses:
         '200':
@@ -636,10 +713,10 @@ paths:
               - $ref: '#/components/schemas/LoginRequest'
               - example:
                   email: superuser123@gmail.com
-                  password: supergreatsecret123
+                  password: wrongpassword
             example:
               email: superuser123@gmail.com
-              password: supergreatsecret123
+              password: wrongpassword
         required: true
       responses:
         '200':
@@ -852,6 +929,7 @@ components:
       - eventId
       - title
       - icon
+      - scheduledOn
       - invitationLine
       type: object
       properties:
@@ -863,6 +941,11 @@ components:
           type: string
         icon:
           type: string
+        scheduledOn:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduledOn'
+          description: ''
         invitationLine:
           type: string
       example:
@@ -870,7 +953,24 @@ components:
         eventId: 6475a65cd5f41fe42bcf9a30
         title: Let's make some hot coffee
         icon: fa fa-solid-coffee
+        scheduledOn:
+        - timings: 12:00
+          date: 12-12-2023
         invitationLine: Come join this amazing session on coffee-making and learn to make some great tasting coffee with exotic coffee seeds
+    ScheduledOn:
+      title: ScheduledOn
+      required:
+      - timings
+      - date
+      type: object
+      properties:
+        timings:
+          type: string
+        date:
+          type: string
+      example:
+        timings: 12:00
+        date: 12-12-2023
     UpdateNudgeRequest:
       title: UpdateNudgeRequest
       required:
@@ -914,7 +1014,7 @@ components:
       example:
         name: Super User
         email: superuser123@gmail.com
-        password: supergreatsecret123
+        password: wrongpassword
     LoginRequest:
       title: LoginRequest
       required:
@@ -928,7 +1028,7 @@ components:
           type: string
       example:
         email: superuser123@gmail.com
-        password: supergreatsecret123
+        password: wrongpassword
   securitySchemes:
     httpBearer:
       type: http

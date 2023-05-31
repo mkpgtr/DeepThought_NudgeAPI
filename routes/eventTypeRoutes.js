@@ -37,6 +37,23 @@ router.get('/:id',async(req,res)=>{
     }
 })
 
+router.put('/:id',async(req,res)=>{
+    try {
+        const {id} = req.params
+        const eventType = await EventType.findOne({_id:id})
+
+        if(!eventType){
+            return res.status(400).json({message:"there is no such event",success:false})
+        }
+
+        await EventType.findByIdAndUpdate(req.params.id,req.body)
+
+        res.status(200).json({message:"eventType updated successfully",success:true})
+    } catch (error) {
+        res.status(500).json({message:error.message,success:false})
+    }
+})
+
 
 
 
