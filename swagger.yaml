@@ -1,11 +1,11 @@
 openapi: 3.0.0
 info:
-  title: DeepThought_NudgeAPI by Manish Kumar Panda
+  title: DeepThought_NudgeAPI
   contact: {}
   version: '1.0'
 servers:
-- url: https://deepthought-nudge-api.onrender.com/api/v3/app
 # - url: http://localhost:5000/api/v3/app
+- url: https://deepthought-nudge-api.onrender.com/api/v3/app
   variables: {}
 paths:
   /eventCategory:
@@ -23,9 +23,9 @@ paths:
               allOf:
               - $ref: '#/components/schemas/CreateEventTypeRequest'
               - example:
-                  name: Demo Event Type
+                  name: ''
             example:
-              name: Demo Event Type
+              name: ''
         required: true
       responses:
         '200':
@@ -75,6 +75,18 @@ paths:
         style: simple
         schema:
           type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateEventTypeRequest'
+              - example:
+                  name: ''
+            example:
+              name: ''
+        required: true
       responses:
         '200':
           description: ''
@@ -86,32 +98,30 @@ paths:
       - Events
       summary: Get All Events
       operationId: GetAllEvents
-      parameters: 
-     
-      - name: type
-        in: query
-        description: ''
-        required: false
-        style: simple
-        schema:
-          type: string
-          example: latest
+      parameters:
       - name: limit
         in: query
         description: ''
-        required: false
-        style: simple
+        style: form
+        explode: true
         schema:
-          type: number
-          example: 3
+          type: integer
+          format: int32
       - name: page
         in: query
         description: ''
-        required: false
-        style: simple
+        style: form
+        explode: true
         schema:
-          type: number
-          example: 1
+          type: integer
+          format: int32
+      - name: type
+        in: query
+        description: ''
+        style: form
+        explode: true
+        schema:
+          type: string
       responses:
         '200':
           description: ''
@@ -131,84 +141,50 @@ paths:
               allOf:
               - $ref: '#/components/schemas/CreateEventRequest'
               - example:
-                  category: 64758e2d7541a58bf5604c4a
-                  subcategory: 6475faf0bd65c4dd996cca1d
-                  title: Test Event
-                  user: 6475e93d3cf3183a3c11bfa8
-                  moderator: 6475fb8cbd65c4dd996cca21
+                  category: ''
+                  subcategory: ''
+                  name: ''
+                  user: ''
+                  moderator: ''
                   rigor_rank: 5
                   attendees:
-                  - 6475ee5df7bb88bff135458c
-                  - 6475ee15f7bb88bff1354587
-                  - 6475e2b30c36342198d22ff4
-                  - 647598e08ba089b01b4d7407
-                  - 647598ed8ba089b01b4d7409
-                  imageUrl: https://res.cloudinary.com/dvfpxjjk1/image/upload/v1685457663/deepthought-events/u54ln8qss37xlq8ozedk.webp
-                  description: Test Event
+                  - ''
+                  imageUrl: ''
+                  description: ''
                   scheduled:
-                  - on: 2023-00-03
-                    from: 17:00:00
-                    to: 19:00:00
-                  tagline: When your mind is full of thoughts, calm it down with mindfulness
+                  - on: 2024-07-11
+                    from: 2024-07-11 9:00:00
+                    to: 2024-07-11 13:00:00
+                  tagline: Skydiving is fun. Skydiving is enthralling.
             example:
-              category: 64758e2d7541a58bf5604c4a
-              subcategory: 6475faf0bd65c4dd996cca1d
-              title: Test Event
-              user: 6475e93d3cf3183a3c11bfa8
-              moderator: 6475fb8cbd65c4dd996cca21
+              category: ''
+              subcategory: ''
+              name: ''
+              user: ''
+              moderator: ''
               rigor_rank: 5
               attendees:
-              - 6475ee5df7bb88bff135458c
-              - 6475ee15f7bb88bff1354587
-              - 6475e2b30c36342198d22ff4
-              - 647598e08ba089b01b4d7407
-              - 647598ed8ba089b01b4d7409
-              imageUrl: https://res.cloudinary.com/dvfpxjjk1/image/upload/v1685457663/deepthought-events/u54ln8qss37xlq8ozedk.webp
-              description: Test Event
+              - ''
+              imageUrl: ''
+              description: ''
               scheduled:
-              - on: 2023-00-03
-                from: 17:00:00
-                to: 19:00:00
-              tagline: When your mind is full of thoughts, calm it down with mindfulness
+              - on: 2024-07-11
+                from: 2024-07-11 9:00:00
+                to: 2024-07-11 13:00:00
+              tagline: Skydiving is fun. Skydiving is enthralling.
         required: true
       responses:
         '200':
           description: ''
           headers: {}
       deprecated: false
-  /events/{id}:
-    get:
-      tags:
-      - Events
-      summary: Get Event By Id
-      operationId: GetEventById
-      parameters:
-      - name: id
-        in: query
-        description: ''
-        required: true
-        style: simple
-        schema:
-          type: string
-          example: 6475f10af7bb88bff135459d
-      responses:
-        '200':
-          description: ''
-          headers: {}
-      deprecated: false
+  /events/647780ca8377a1a50d06f9ad:
     put:
       tags:
       - Events
       summary: Update Event
       operationId: UpdateEvent
-      parameters:
-      - name: id
-        in: path
-        description: ''
-        required: true
-        style: simple
-        schema:
-          type: string
+      parameters: []
       requestBody:
         description: ''
         content:
@@ -217,75 +193,50 @@ paths:
               allOf:
               - $ref: '#/components/schemas/UpdateEventRequest'
               - example:
-                  category: 64758e2d7541a58bf5604c4a
-                  subcategory: 647590f8559a3c48e6e0cab2
-                  title: Workshop on Coffee making
-                  user: 6474e9955fd93dc8f62bc765
-                  moderator: 647599628ba089b01b4d740c
-                  rigor_rank: 7
+                  category: ''
+                  subcategory: ''
+                  name: ''
+                  user: ''
+                  moderator: ''
+                  rigor_rank: 5
                   attendees:
-                  - 647598e08ba089b01b4d7407
-                  - 647598ed8ba089b01b4d7409
-                  imageUrl: https://res.cloudinary.com/dvfpxjjk1/image/upload/v1685377149/deepthought-events/heevbewjm8ae0yikzfhq.jpg
-                  description: Let's have some fun in this cool workshop on coffee making
-                  schedule:
-                  - eventStartTime: 10:00:00
-                    eventEndTime: 12:00:00
-                  tagline: Coffee is the key to brainstorming
+                  - ''
+                  imageUrl: ''
+                  description: ''
+                  scheduled:
+                  - on: 2024-07-11
+                    from: 2024-07-11 9:00:00
+                    to: 2024-07-11 13:00:00
+                  tagline: Skydiving is fun. Skydiving is enthralling.
             example:
-              category: 64758e2d7541a58bf5604c4a
-              subcategory: 647590f8559a3c48e6e0cab2
-              title: Workshop on Coffee making
-              user: 6474e9955fd93dc8f62bc765
-              moderator: 647599628ba089b01b4d740c
-              rigor_rank: 7
+              category: ''
+              subcategory: ''
+              name: ''
+              user: ''
+              moderator: ''
+              rigor_rank: 5
               attendees:
-              - 647598e08ba089b01b4d7407
-              - 647598ed8ba089b01b4d7409
-              imageUrl: https://res.cloudinary.com/dvfpxjjk1/image/upload/v1685377149/deepthought-events/heevbewjm8ae0yikzfhq.jpg
-              description: Let's have some fun in this cool workshop on coffee making
-              schedule:
-              - eventStartTime: 10:00:00
-                eventEndTime: 12:00:00
-              tagline: Coffee is the key to brainstorming
+              - ''
+              imageUrl: ''
+              description: ''
+              scheduled:
+              - on: 2024-07-11
+                from: 2024-07-11 9:00:00
+                to: 2024-07-11 13:00:00
+              tagline: Skydiving is fun. Skydiving is enthralling.
         required: true
       responses:
         '200':
           description: ''
           headers: {}
       deprecated: false
-    delete:
-      tags:
-      - Events
-      summary: Delete Event
-      operationId: DeleteEvent
-      parameters:
-      - name: id
-        in: path
-        description: ''
-        required: true
-        style: simple
-        schema:
-          type: string
-      responses:
-        '200':
-          description: ''
-          headers: {}
-      deprecated: false
-  /images/{id}/upload-image:
+  /images/6475a65cd5f41fe42bcf9a30/upload-image:
     put:
       tags:
       - Events
       summary: Update Event Image
       operationId: UpdateEventImage
-      parameters:
-      - name: id
-        in: path
-        description: ''
-        required: true
-        style: simple
-        schema:
-          type: string
+      parameters: []
       requestBody:
         content:
           multipart/form-data:
@@ -329,12 +280,12 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /user:
-    post:
+  /events/64760c661521df0196ac0d51:
+    delete:
       tags:
-      - User
-      summary: Create User
-      operationId: CreateUser
+      - Events
+      summary: Delete Event
+      operationId: DeleteEvent
       parameters: []
       responses:
         '200':
@@ -342,6 +293,31 @@ paths:
           headers: {}
       deprecated: false
   /users:
+    post:
+      tags:
+      - User
+      summary: Create User
+      operationId: CreateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateUserRequest'
+              - example:
+                  name: ''
+                  role: attendee
+            example:
+              name: ''
+              role: attendee
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
     get:
       tags:
       - User
@@ -367,42 +343,44 @@ paths:
         style: simple
         schema:
           type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateUserRequest'
+              - example:
+                  name: ''
+                  role: attendee
+            example:
+              name: ''
+              role: attendee
+        required: true
       responses:
         '200':
           description: ''
           headers: {}
       deprecated: false
+  /users/6476fc3b43edd2a14cbc0528:
     delete:
       tags:
       - User
       summary: Delete User
       operationId: DeleteUser
-      parameters:
-      - name: id
-        in: path
-        description: ''
-        required: true
-        style: simple
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: ''
           headers: {}
       deprecated: false
+  /:
     get:
       tags:
       - User
       summary: Get User by Id
       operationId: GetUserbyId
-      parameters:
-      - name: id
-        in: path
-        description: ''
-        required: true
-        style: simple
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: ''
@@ -423,11 +401,11 @@ paths:
               allOf:
               - $ref: '#/components/schemas/CreateSubCategoryRequest'
               - example:
-                  name: Celebrating Pongal
-                  parentCategory: 647629afa0bc85392d886af9
+                  name: ''
+                  parentCategory: ''
             example:
-              name: Celebrating Pongal
-              parentCategory: 647629afa0bc85392d886af9
+              name: ''
+              parentCategory: ''
         required: true
       responses:
         '200':
@@ -467,11 +445,11 @@ paths:
               allOf:
               - $ref: '#/components/schemas/UpdateSubCategoryRequest'
               - example:
-                  name: Innovation
-                  parentCategory: 6475e3230c36342198d23004
+                  name: ''
+                  parentCategory: ''
             example:
-              name: Innovation
-              parentCategory: 6475e3230c36342198d23004
+              name: ''
+              parentCategory: ''
         required: true
       responses:
         '200':
@@ -529,23 +507,25 @@ paths:
               allOf:
               - $ref: '#/components/schemas/CreateNudgeRequest'
               - example:
-                  eventCategoryId: 64758e2d7541a58bf5604c4a
-                  eventId: 6475a65cd5f41fe42bcf9a30
-                  title: Let's make some hot coffee
-                  icon: fa fa-solid-coffee
-                  scheduledOn:
-                  - timings: 12:00
-                    date: 12-12-2023
-                  invitationLine: Come join this amazing session on coffee-making and learn to make some great tasting coffee with exotic coffee seeds
+                  eventCategoryId: ''
+                  eventId: ''
+                  title: ''
+                  icon: ''
+                  scheduledOn: ''
+                  scheduledFrom: ''
+                  scheduledTo: ''
+                  coverImage: ''
+                  invitationLine: ''
             example:
-              eventCategoryId: 64758e2d7541a58bf5604c4a
-              eventId: 6475a65cd5f41fe42bcf9a30
-              title: Let's make some hot coffee
-              icon: fa fa-solid-coffee
-              scheduledOn:
-              - timings: 12:00
-                date: 12-12-2023
-              invitationLine: Come join this amazing session on coffee-making and learn to make some great tasting coffee with exotic coffee seeds
+              eventCategoryId: ''
+              eventId: ''
+              title: ''
+              icon: ''
+              scheduledOn: ''
+              scheduledFrom: ''
+              scheduledTo: ''
+              coverImage: ''
+              invitationLine: ''
         required: true
       responses:
         '200':
@@ -585,17 +565,25 @@ paths:
               allOf:
               - $ref: '#/components/schemas/UpdateNudgeRequest'
               - example:
-                  eventCategoryId: 64758e2d7541a58bf5604c4a
-                  eventId: 6475a65cd5f41fe42bcf9a30
-                  title: Let's make some hot/cold coffee
-                  icon: fa fa-solid-coffee
-                  invitationLine: Come join this amazing session on coffee-making and learn to make some great tasting coffee with exotic coffee seeds
+                  eventCategoryId: ''
+                  eventId: ''
+                  title: ''
+                  icon: ''
+                  scheduledOn: ''
+                  scheduledFrom: ''
+                  scheduledTo: ''
+                  coverImage: ''
+                  invitationLine: ''
             example:
-              eventCategoryId: 64758e2d7541a58bf5604c4a
-              eventId: 6475a65cd5f41fe42bcf9a30
-              title: Let's make some hot/cold coffee
-              icon: fa fa-solid-coffee
-              invitationLine: Come join this amazing session on coffee-making and learn to make some great tasting coffee with exotic coffee seeds
+              eventCategoryId: ''
+              eventId: ''
+              title: ''
+              icon: ''
+              scheduledOn: ''
+              scheduledFrom: ''
+              scheduledTo: ''
+              coverImage: ''
+              invitationLine: ''
         required: true
       responses:
         '200':
@@ -656,9 +644,7 @@ paths:
               properties:
                 image:
                   type: string
-                  format : binary
-                  contentEncoding: base64
-              contentMediaType: multipart/form-data
+                  format: binary
         required: false
       responses:
         '200':
@@ -691,8 +677,6 @@ paths:
                 image:
                   type: string
                   format: binary
-                  contentEncoding: base64
-              contentMediaType: multipart/form-data
         required: false
       responses:
         '200':
@@ -727,7 +711,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      security: []
   /auth/login:
     post:
       tags:
@@ -754,7 +737,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      security: []
 components:
   schemas:
     CreateEventTypeRequest:
@@ -766,13 +748,23 @@ components:
         name:
           type: string
       example:
-        name: Demo Event Type
+        name: ''
+    UpdateEventTypeRequest:
+      title: UpdateEventTypeRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: ''
     CreateEventRequest:
       title: CreateEventRequest
       required:
       - category
       - subcategory
-      - title
+      - name
       - user
       - moderator
       - rigor_rank
@@ -787,7 +779,7 @@ components:
           type: string
         subcategory:
           type: string
-        title:
+        name:
           type: string
         user:
           type: string
@@ -813,25 +805,21 @@ components:
         tagline:
           type: string
       example:
-        category: 64758e2d7541a58bf5604c4a
-        subcategory: 6475faf0bd65c4dd996cca1d
-        title: Test Event
-        user: 6475e93d3cf3183a3c11bfa8
-        moderator: 6475fb8cbd65c4dd996cca21
+        category: ''
+        subcategory: ''
+        name: ''
+        user: ''
+        moderator: ''
         rigor_rank: 5
         attendees:
-        - 6475ee5df7bb88bff135458c
-        - 6475ee15f7bb88bff1354587
-        - 6475e2b30c36342198d22ff4
-        - 647598e08ba089b01b4d7407
-        - 647598ed8ba089b01b4d7409
-        imageUrl: https://res.cloudinary.com/dvfpxjjk1/image/upload/v1685457663/deepthought-events/u54ln8qss37xlq8ozedk.webp
-        description: Test Event
+        - ''
+        imageUrl: ''
+        description: ''
         scheduled:
-        - on: 2023-00-03
-          from: 17:00:00
-          to: 19:00:00
-        tagline: When your mind is full of thoughts, calm it down with mindfulness
+        - on: 2024-07-11
+          from: 2024-07-11 9:00:00
+          to: 2024-07-11 13:00:00
+        tagline: Skydiving is fun. Skydiving is enthralling.
     Scheduled:
       title: Scheduled
       required:
@@ -847,22 +835,22 @@ components:
         to:
           type: string
       example:
-        on: 2023-00-03
-        from: 17:00:00
-        to: 19:00:00
+        on: 2024-07-11
+        from: 2024-07-11 9:00:00
+        to: 2024-07-11 13:00:00
     UpdateEventRequest:
       title: UpdateEventRequest
       required:
       - category
       - subcategory
-      - title
+      - name
       - user
       - moderator
       - rigor_rank
       - attendees
       - imageUrl
       - description
-      - schedule
+      - scheduled
       - tagline
       type: object
       properties:
@@ -870,7 +858,7 @@ components:
           type: string
         subcategory:
           type: string
-        title:
+        name:
           type: string
         user:
           type: string
@@ -888,43 +876,57 @@ components:
           type: string
         description:
           type: string
-        schedule:
+        scheduled:
           type: array
           items:
-            $ref: '#/components/schemas/Schedule'
+            $ref: '#/components/schemas/Scheduled'
           description: ''
         tagline:
           type: string
       example:
-        category: 64758e2d7541a58bf5604c4a
-        subcategory: 647590f8559a3c48e6e0cab2
-        title: Workshop on Coffee making
-        user: 6474e9955fd93dc8f62bc765
-        moderator: 647599628ba089b01b4d740c
-        rigor_rank: 7
+        category: ''
+        subcategory: ''
+        name: ''
+        user: ''
+        moderator: ''
+        rigor_rank: 5
         attendees:
-        - 647598e08ba089b01b4d7407
-        - 647598ed8ba089b01b4d7409
-        imageUrl: https://res.cloudinary.com/dvfpxjjk1/image/upload/v1685377149/deepthought-events/heevbewjm8ae0yikzfhq.jpg
-        description: Let's have some fun in this cool workshop on coffee making
-        schedule:
-        - eventStartTime: 10:00:00
-          eventEndTime: 12:00:00
-        tagline: Coffee is the key to brainstorming
-    Schedule:
-      title: Schedule
+        - ''
+        imageUrl: ''
+        description: ''
+        scheduled:
+        - on: 2024-07-11
+          from: 2024-07-11 9:00:00
+          to: 2024-07-11 13:00:00
+        tagline: Skydiving is fun. Skydiving is enthralling.
+    CreateUserRequest:
+      title: CreateUserRequest
       required:
-      - eventStartTime
-      - eventEndTime
+      - name
+      - role
       type: object
       properties:
-        eventStartTime:
+        name:
           type: string
-        eventEndTime:
+        role:
           type: string
       example:
-        eventStartTime: 10:00:00
-        eventEndTime: 12:00:00
+        name: ''
+        role: attendee
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      required:
+      - name
+      - role
+      type: object
+      properties:
+        name:
+          type: string
+        role:
+          type: string
+      example:
+        name: ''
+        role: attendee
     CreateSubCategoryRequest:
       title: CreateSubCategoryRequest
       required:
@@ -937,8 +939,8 @@ components:
         parentCategory:
           type: string
       example:
-        name: Celebrating Pongal
-        parentCategory: 647629afa0bc85392d886af9
+        name: ''
+        parentCategory: ''
     UpdateSubCategoryRequest:
       title: UpdateSubCategoryRequest
       required:
@@ -951,8 +953,8 @@ components:
         parentCategory:
           type: string
       example:
-        name: Innovation
-        parentCategory: 6475e3230c36342198d23004
+        name: ''
+        parentCategory: ''
     CreateNudgeRequest:
       title: CreateNudgeRequest
       required:
@@ -961,6 +963,9 @@ components:
       - title
       - icon
       - scheduledOn
+      - scheduledFrom
+      - scheduledTo
+      - coverImage
       - invitationLine
       type: object
       properties:
@@ -973,35 +978,25 @@ components:
         icon:
           type: string
         scheduledOn:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScheduledOn'
-          description: ''
+          type: string
+        scheduledFrom:
+          type: string
+        scheduledTo:
+          type: string
+        coverImage:
+          type: string
         invitationLine:
           type: string
       example:
-        eventCategoryId: 64758e2d7541a58bf5604c4a
-        eventId: 6475a65cd5f41fe42bcf9a30
-        title: Let's make some hot coffee
-        icon: fa fa-solid-coffee
-        scheduledOn:
-        - timings: 12:00
-          date: 12-12-2023
-        invitationLine: Come join this amazing session on coffee-making and learn to make some great tasting coffee with exotic coffee seeds
-    ScheduledOn:
-      title: ScheduledOn
-      required:
-      - timings
-      - date
-      type: object
-      properties:
-        timings:
-          type: string
-        date:
-          type: string
-      example:
-        timings: 12:00
-        date: 12-12-2023
+        eventCategoryId: ''
+        eventId: ''
+        title: ''
+        icon: ''
+        scheduledOn: ''
+        scheduledFrom: ''
+        scheduledTo: ''
+        coverImage: ''
+        invitationLine: ''
     UpdateNudgeRequest:
       title: UpdateNudgeRequest
       required:
@@ -1009,6 +1004,10 @@ components:
       - eventId
       - title
       - icon
+      - scheduledOn
+      - scheduledFrom
+      - scheduledTo
+      - coverImage
       - invitationLine
       type: object
       properties:
@@ -1020,14 +1019,26 @@ components:
           type: string
         icon:
           type: string
+        scheduledOn:
+          type: string
+        scheduledFrom:
+          type: string
+        scheduledTo:
+          type: string
+        coverImage:
+          type: string
         invitationLine:
           type: string
       example:
-        eventCategoryId: 64758e2d7541a58bf5604c4a
-        eventId: 6475a65cd5f41fe42bcf9a30
-        title: Let's make some hot/cold coffee
-        icon: fa fa-solid-coffee
-        invitationLine: Come join this amazing session on coffee-making and learn to make some great tasting coffee with exotic coffee seeds
+        eventCategoryId: ''
+        eventId: ''
+        title: ''
+        icon: ''
+        scheduledOn: ''
+        scheduledFrom: ''
+        scheduledTo: ''
+        coverImage: ''
+        invitationLine: ''
     RegisterRequest:
       title: RegisterRequest
       required:

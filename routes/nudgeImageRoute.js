@@ -17,12 +17,11 @@ router.post('/upload-image',authMiddleware,multer({storage}).single('image'), as
     try {
         const response = await cloudinaryConfig.uploader.upload(req.file.path,
             {
-                folder:'deepthought-events/nudge'
+                folder:'nudge'
             }
             )
 
             const imageUrl = response.secure_url;
-            console.log(response)
             res.status(200).json({message:"image uploaded successfully",data:imageUrl,success:true})
     } catch (error) {
         res.status(500).json({message:error.message,success:false})
@@ -35,7 +34,6 @@ router.put('/:id/upload-image',authMiddleware,multer({storage}).single('image'),
 
     try {
         const {id} = req.params;
-        console.log(id)
 
         const event = await Nudge.findOne({_id:id})
 
@@ -43,11 +41,11 @@ router.put('/:id/upload-image',authMiddleware,multer({storage}).single('image'),
     
         const getPublicId = (imageUrl) => imageUrl.split("/").pop().split(".")[0];
 
-        await cloudinaryConfig.uploader.destroy(`deepthought-events/`+getPublicId(url))
+        await cloudinaryConfig.uploader.destroy(`nudge/`+getPublicId(url))
 
         const response = await cloudinaryConfig.uploader.upload(req.file.path,
             {
-                folder:'nudge/deepthought-events'
+                folder:'nudge'
             }
             )
 

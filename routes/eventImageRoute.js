@@ -21,7 +21,6 @@ router.post('/upload-image',authMiddleware,multer({storage}).single('image'), as
             )
 
             const imageUrl = response.secure_url;
-            console.log(response)
             res.status(200).json({message:"image uploaded successfully",data:imageUrl,success:true})
     } catch (error) {
         res.status(500).json({message:error.message,success:false})
@@ -34,7 +33,6 @@ router.put('/:id/upload-image',authMiddleware,multer({storage}).single('image'),
 
     try {
         const {id} = req.params;
-        console.log(id)
 
         const event = await Event.findOne({_id:id})
 

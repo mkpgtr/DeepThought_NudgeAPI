@@ -55,8 +55,12 @@ router.post('/',authMiddleware,async(req,res)=>{
 
 router.put('/:id',authMiddleware,async(req,res)=>{
     try {
-        await Nudge.findByIdAndUpdate(req.params.id,req.body)
-        res.status(200).json({message:"Nudge Updated Successfully",success:false})
+        const nudge = await Nudge.findOne({_id:req.params.id})
+        if(!nudge){
+            return res.json({message:"no such nudge exists",success:false})
+        }
+        await Nudge.findByIdAndUpdate(req.params.id,{...req.body,coverImage:nudge.coverImage})
+        res.status(200).json({message:"Nudge Updated Successfully",success:true})
         
     } catch (error) {
         res.status(500).json({message:error.message,success:false})
@@ -82,10 +86,12 @@ router.delete('/:id',authMiddleware,async(req,res)=>{
 
         const getPublicId = (imageUrl) => imageUrl.split("/").pop().split(".")[0];
 
+        console.log(url)
 
-        // first delete the image related to that event
-        await cloudinaryConfig.uploader.destroy(`deepthought-events/nudge/`+getPublicId(url))
+        // first delete the image related to that nudge
+        await cloudinaryConfig.uploader.destroy(`nudge/`+getPublicId(url))
 
+        
         await Nudge.findByIdAndDelete(req.params.id)
         res.status(200).json({message:"Nudge Deleted Successfully",success:true})
         

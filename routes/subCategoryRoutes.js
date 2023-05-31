@@ -50,7 +50,7 @@ router.get('/:id',async(req,res)=>{
         }
 
 
-        res.status(500).json({data:subCategory,success:false})
+        res.status(200).json({data:subCategory,success:true})
     } catch (error) {
         res.status(500).json({message:error.message,success:false})
     }

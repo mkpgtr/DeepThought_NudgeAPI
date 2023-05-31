@@ -8,7 +8,7 @@ router.post('/',authMiddleware,async(req,res)=>{
 
     try {
         await EventType.create(req.body)
-        res.status(500).json({message:"Event Category Created Successfully",success:true})
+        res.status(200).json({message:"Event Category Created Successfully",success:true})
     }
         
      catch (error) {
