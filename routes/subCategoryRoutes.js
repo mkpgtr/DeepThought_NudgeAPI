@@ -40,6 +40,22 @@ router.get('/',async(req,res)=>{
     }
 })
 
+router.get('/:id',async(req,res)=>{
+    try {
+        const subCategory = await SubCategory.findOne({_id:req.params.id})
+        .populate("parentCategory")
+        
+        if(!subCategory){
+            return res.status(404).json({message:"no such sub category exists"})
+        }
+
+
+        res.status(500).json({data:subCategory,success:false})
+    } catch (error) {
+        res.status(500).json({message:error.message,success:false})
+    }
+})
+
 router.put('/:id',authMiddleware,async(req,res)=>{
     try {
         const subcategories = await SubCategory.findByIdAndUpdate(req.params.id,req.body)
