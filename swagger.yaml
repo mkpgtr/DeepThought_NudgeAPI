@@ -4,7 +4,8 @@ info:
   contact: {}
   version: '1.0'
 servers:
-- url: https://deepthought-nudge-api.onrender.com/api/v3/app
+# - url: https://deepthought-nudge-api.onrender.com/api/v3/app
+- url: http://localhost:5000/api/v3/app
   variables: {}
 paths:
   /eventCategory:
@@ -644,6 +645,21 @@ paths:
       summary: Upload Nudge Cover Image
       operationId: UploadNudgeCoverImage
       parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+              - image
+              type: object
+              properties:
+                image:
+                  type: string
+                  format : binary
+                  contentEncoding: base64
+              contentMediaType: multipart/form-data
+        required: false
       responses:
         '200':
           description: ''
@@ -663,6 +679,21 @@ paths:
         style: simple
         schema:
           type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+              - image
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  contentEncoding: base64
+              contentMediaType: multipart/form-data
+        required: false
       responses:
         '200':
           description: ''
