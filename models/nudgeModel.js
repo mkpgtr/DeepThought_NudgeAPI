@@ -4,11 +4,13 @@ const moment = require('moment')
 const nudgeSchema = new mongoose.Schema({
     eventCategoryId :{
         type:mongoose.Types.ObjectId,
-        ref:'eventType'
+        ref:'eventType',
+        required:true
     },
     eventId:{
         type:mongoose.Types.ObjectId,
-        ref:'event'
+        ref:'event',
+        required:true
 
     },
     // this will have the css class of the icon (from fontawesome or remix icons)

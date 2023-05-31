@@ -4,6 +4,9 @@ require('dotenv').config()
 const app = express()
 const dbConfig = require('./config/dbConfig')
 const YAML = require('yamljs');
+const helmet = require('helmet')
+const xss = require('xss-clean')
+const rateLimiter = require('express-rate-limit')
 const swaggerDocument = YAML.load('./swagger.yaml');
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUI = require('swagger-ui-express')
@@ -19,9 +22,16 @@ const base_url = 'api/v3/app'
 
 const cors = require('cors')
 
+
+app.set('trust proxy', 1)
+app.use(rateLimiter({ 
+    windowMs:15 * 60 * 1000,
+    max: 100
+}))
 app.use(cors())
 app.use(express.json())
-
+app.use(helmet())
+app.use(xss())
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
