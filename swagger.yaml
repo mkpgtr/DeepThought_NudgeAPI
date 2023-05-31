@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: DeepThought_NudgeAPI
+  title: DeepThought_NudgeAPI by Manish Kumar Panda
   contact: {}
   version: '1.0'
 servers:
