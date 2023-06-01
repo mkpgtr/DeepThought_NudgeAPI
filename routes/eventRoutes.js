@@ -95,7 +95,7 @@ router.get('/',async(req,res)=>{
         .populate("category")
         .populate("subcategory")
         .populate("attendees")
-        res.status(200).json({data:events,success:true})
+        res.status(200).json({data:events,count:events.length,success:true})
     } catch (error) {
         res.status(500).json({message:error.message,success:false})
     }

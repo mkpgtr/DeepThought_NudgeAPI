@@ -16,7 +16,7 @@ router.post('/register',async(req,res)=>{
      const users = await User.find({})
 
      if(users.length > 0){
-        return res.status(400).json({message:"Cannot create user",success:false})
+        return res.status(400).json({message:"Account creation is prohibited by Manish",success:false})
      }
 
      const userExists = await User.findOne({email:req.body.email});

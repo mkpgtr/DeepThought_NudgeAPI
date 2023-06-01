@@ -20,7 +20,8 @@ const eventSchema = new mongoose.Schema({
     user:{
         type:mongoose.Types.ObjectId,
         ref:'user',
-        required:true
+        required:true,
+        unique:true
     },
     tagline:{
         type:String,

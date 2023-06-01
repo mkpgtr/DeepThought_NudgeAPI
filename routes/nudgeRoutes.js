@@ -11,7 +11,7 @@ router.get('/',async(req,res)=>{
  
     try {
         const nudges = await Nudge.find({})
-        res.status(200).json({data:nudges,success:false})
+        res.status(200).json({data:nudges,success:true})
 
     } catch (error) {
         res.status(500).json({message:error.message,success:false})
@@ -24,12 +24,13 @@ router.get('/:id',async(req,res)=>{
 
     try {
         const {id} = req.params
+        console.log(id)
         const nudge = await Nudge.findOne({_id:id})
         if(!nudge){
             return res.status(404).json({message:"no such nudge exists",success:false})
         }
 
-        res.status(200).res.json({data:nudge,success:true})
+        res.status(200).json({data:nudge,success:true})
 
     } catch (error) {
         res.status(500).json({message:error.message,success:false})
