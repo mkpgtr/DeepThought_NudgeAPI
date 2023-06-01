@@ -4,7 +4,8 @@ info:
   contact: {}
   version: '1.0'
 servers:
-- url: http://localhost:5000/api/v3/app
+# - url: http://localhost:5000/api/v3/app
+- url: https://deepthought-nudge-api.onrender.com/
   variables: {}
 paths:
   /eventCategory:
