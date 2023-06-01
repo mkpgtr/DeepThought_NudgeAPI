@@ -3,7 +3,7 @@ info:
   title: DeepThought_NudgeAPI
   contact: {}
   version: '1.0'
-servers:
+servers:super
 # - url: http://localhost:5000/api/v3/app
 - url: https://deepthought-nudge-api.onrender.com/api/v3/app
   variables: {}
@@ -748,11 +748,11 @@ paths:
               - example:
                   name: Super User
                   email: superuser123@gmail.com
-                  password: wrongpassword
+                  password: please-enter-password
             example:
               name: Super User
               email: superuser123@gmail.com
-              password: wrongpassword
+              password: please-enter-password
         required: true
       responses:
         '200':
@@ -1105,7 +1105,7 @@ components:
       example:
         name: Super User
         email: superuser123@gmail.com
-        password: wrongpassword
+        password: please-enter-password
     LoginRequest:
       title: LoginRequest
       required:
