@@ -81,7 +81,7 @@ Deepthought Nudge API is an API that assists in creating annoucements(nudges) fo
 2. Attendees(who attend the event) & Moderators who host the Event
 3. User(who is entering the Event data into database)
 4. Rigor rank(regarding the rigor of the event).
- Assumption with an Example : An event about machine learning model optimization(rigor_rank:9) is more rigorous than an event on making hot/cold coffee(rigor_rank:5)
+ Assumption with an Example : An event about machine learning model optimization(rigor_rank:9) is more rigorous than an event on making hot/cold coffee(rigor_rank:5) provided that company deals in machine learning projects(an not in coffee) and any mistake in that area might cost the company a lot.
 6. scheduled date & time of the event(stored as type:Date in Event Schema)
 7. Tagline(that is a witty line for that event)
 
