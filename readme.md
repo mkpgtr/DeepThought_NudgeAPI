@@ -7,14 +7,18 @@
 ## Solutions Links :
 
 #### Important Note : 
-
+0. THis project will not work without the credentials in the .env file. The .env file includes
+    mongo_url,JWT_SECRET,CLOUD_NAME (which refers to cloudinary cloud name), CLOUD_API_KEY, and 
+    CLOUD_API_SECRET
 1. I have planned & designed & coded this API without any external help(except for Swagger Documentation).
 2. Creating Swagger Documentation was new for me. 
 3. I rely on my github code &  video recordings to explain every functionality during interview round.
 4. I have tried and tested the endpoints and they work absolutely fine using Postman. 
 If things break(or if some inconsistent status codes are shown[silly mistakes]) in the Swagger Documentation, then it must be some configuration error.
 5. I have built everything myself.
-
+6. To run the swagger documention on localhost:5000, comment out the render link on line number 7 
+    and uncomment the the line number 6 in swagger.yaml file. restart the node server and visit
+    http://localhost:5000/api/v3/app/api-docs/#
 Links : 
 
 
@@ -23,9 +27,20 @@ Links :
     (the scheduled field in nudge & event schema finally evolved. while recording this video the scheduled field has a different structure than the current structure )
     Task 1 Video Link(Pagination & Search By Id) : https://drive.google.com/file/d/1DG4Zrnhlgg4r2o85atL-DfO-ZXj-tTkh/view
 
+
+(A json formatter is recommended to actually clearly see this on the browser like so : )
+Please also have a look at : https://deepthought-nudge-api.onrender.com/api/v3/app/events
+and 
+also this : https://deepthought-nudge-api.onrender.com/api/v3/app/events?id=64783a7e3e6c3f6a30160330
+
+For pagination & recent posts : https://deepthought-nudge-api.onrender.com/api/v3/app/events?type=latest&page=1&limit=5
+
 2. Task 2 :https://deepthought-nudge-api.onrender.com/api-docs/#/
 
-(this link takes some time to load)
+    (See the Nudge Section by visiting this above link)
+    (I have also explained my thought process about Nudges in this readme.md also)
+    
+     >(this link takes some time to load(approx one minute) as it is deployed on a free server)
 
 
 
@@ -101,3 +116,11 @@ Also, think of a Nudge being created out of an User Interface. This User Interfa
 2. this is done so that no event ever remains on database without an image.
 
 #### The CRUD operations on Nudge cover image can be performed just like the CRUD operations Event photo/image
+
+
+### Task 2 Explanation
+
+1. By looking at the endpoints in the documentation, it must be extremely clear regarding how I thought 
+    about Nudges. It might not be the best way to think about Nudges, but it makes a lot of sense(at least to me.)
+2. Task 2 also showed a UI which helped me a lot to relate it to a real-life situation.
+3. I also attempted to build the UI with Ant Design System and also a succeeded in doing so. But I      abandoned the plan later because I was not much familiar with Ant Design and some Select    Component features were not easy to customize.
