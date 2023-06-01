@@ -52,7 +52,7 @@ paths:
       operationId: GetEventTypeById
       parameters:
       - name: id
-        in: path
+        in: query
         description: ''
         required: true
         style: simple
