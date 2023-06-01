@@ -28,7 +28,7 @@ Links :
     Task 1 Video Link(Pagination & Search By Id) : https://drive.google.com/file/d/1DG4Zrnhlgg4r2o85atL-DfO-ZXj-tTkh/view
 
 
-(A json formatter is recommended to actually clearly see this on the browser like so : )
+(A json formatter is recommended to actually clearly see this on the browser like so : https://res.cloudinary.com/dvfpxjjk1/image/upload/v1685611902/jsonformatsss_opvud7.png )
 Please also have a look at : https://deepthought-nudge-api.onrender.com/api/v3/app/events
 and 
 also this : https://deepthought-nudge-api.onrender.com/api/v3/app/events?id=64783a7e3e6c3f6a30160330
