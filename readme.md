@@ -21,6 +21,7 @@ If things break(or if some inconsistent status codes are shown[silly mistakes]) 
     http://localhost:5000/api/v3/app/api-docs/#
 Links : 
 
+### Task 1
 
 1. Task 1 : https://github.com/mkpgtr/DeepThought_NudgeAPI
     Task 1 Video Link(Event Creation Process) : https://drive.google.com/file/d/1ENchv1flTSV19FaA4cnmBP2DbiivgQdY/view
@@ -34,6 +35,8 @@ and
 also this : https://deepthought-nudge-api.onrender.com/api/v3/app/events?id=64783a7e3e6c3f6a30160330
 
 For pagination & recent posts : https://deepthought-nudge-api.onrender.com/api/v3/app/events?type=latest&page=1&limit=5
+
+### Task 2
 
 2. Task 2 :https://deepthought-nudge-api.onrender.com/api-docs/#/
 
